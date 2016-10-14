@@ -1,0 +1,24 @@
+1. in ApplicationController
+  require 'csv'
+
+2. in your controller, add the following below @objects = Object.all
+
+  respond_to do |format|
+    format.html
+    format.csv { send_data @reservations.to_csv }
+  end
+
+3. in your model, add the following
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |result|
+        csv << result.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+4. add a link or a button to the page you want to be able to grab, probably the index
+
+  <%= link_to 'DOWNLOAD CSV', reservations_path(format: :csv) %>
