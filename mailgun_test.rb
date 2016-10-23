@@ -62,6 +62,7 @@ XXXXX 3. add devise gem
   E. create a User model
     rails g devise user
     rake db:migrate
+    heroku rake db:migrate
   F. RESTART SERVER
   G. again in application.html.erb
     # <p class="navbar-text pull-right">
@@ -76,7 +77,23 @@ XXXXX 3. add devise gem
   H. in application_controller.rb, after protect_from_forgery with: :exception
     before_action :authenticate_user!
 
-4. export csv
+XXXXX 4. export csv
+  A. in config/application, after require 'rails/all'
+    require 'csv'
+  B. put the following in controller in index
+    # respond_to do |format|
+    #   format.html
+    #   format.csv { send_data @reservations.to_csv }
+    # end
+  C. in the model, put this method
+    # def self.to_csv
+    #   CSV.generate do |csv|
+    #     csv << column_names
+    #     all.each do |result|
+    #       csv << result.attributes.values_at(*column_names)
+    #     end
+    #   end
+    # end
 
 5. import csv
 
@@ -87,4 +104,4 @@ XXXXX 3. add devise gem
 
 8. add secret info to ~/.bash_profile
 
-9. implement css
+9. implement css grid
