@@ -95,7 +95,22 @@ XXXXX 4. export csv
     #   end
     # end
 
-5. import csv
+XXXXX 5. import csv
+  0. require 'csv' if not already required
+  A. create new file called import.rake in lib/tasks, write
+    # namespace :import do
+    #
+    #   task :reservations => :environment do
+    #     csv_text = File.read("lib/reservations_test.csv")
+    #     csv = CSV.parse(csv_text, :headers => true)
+    #     csv.each do |row|
+    #       Reservation.create!(row.to_hash)
+    #     end
+    #   end
+    # end
+  B. put your csv file loose in the lib file, call it whatever.csv
+  C. call the rake with
+    rake import:table_name_plural
 
 6. hook up mailgun
 
