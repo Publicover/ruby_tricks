@@ -113,6 +113,57 @@ XXXXX 5. import csv
     rake import:table_name_plural
 
 6. hook up mailgun
+  A. create methods in relevant controller (write_email or similar name)
+    # ReportMailer.view_single(params[:address]).deliver_now
+  B. generate mailer with actions named after function of emails
+    # rails g mailer UserMailer view_single
+  C. change routes
+    # get 'report/write_email'
+    # post 'report/send_email'
+  D. create views named after mailer actions
+    # write_email.html.erb
+    # send_email.html.erb
+  E. in write_email, use the following:
+    # <h1>Write an email</h1>
+    #
+    # <%= form_tag reports_send_email_path do %>
+    #   <%= email_field_tag :address, nil, placeholder: "Email address" %>
+    #   <%= submit_tag "SEND ME AN EMAIL"%>
+    # <% end %>
+  F. in send_email, use something like below:
+    # <h1>Reports#send_email</h1>
+    # <p>Find me in app/views/reports/send_email.html.erb</p>
+    # <br><h1><p>You sent an email to <%= params[:address] %>. </p></h1>
+    
+  in config/$RAILS_ENV.rb, change config.action_mailer.raise_delivery_errors to true
+  paste the following under that
+    # config.action_mailer.delivery_method = :smtp
+    # config.action_mailer.smtp_settings = {
+    # address:              'smtp.gmail.com',
+    # port:                 587,
+    # domain:               'example.com',
+    # user_name:            '<username>',
+    # password:             '<password>',
+    # authentication:       'plain',
+    # enable_starttls_auto: true  }
+  when done sending emails in development, change .raise_delivery_errors back to false
+  in config, fill matching info from the Mailgun Domain page
+  put mailgun information in ~/.bash_profile
+
+  put the following in the config/production
+    # config.action_mailer.raise_delivery_errors = true
+    # config.action_mailer.delivery_method = :smtp
+    # config.action_mailer.smtp_settings = {
+    #   :port           => ENV['MAILGUN_SMTP_PORT'],
+    #   :address        => ENV['MAILGUN_SMTP_SERVER'],
+    #   :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    #   :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    #   :domain         => 'fulltestsuite.herokuapp.com', #eg: 'yourappname.herokuapp.com'
+    #   :authentication => :plain,
+    # }
+    integrate PointDNS
+    add the TXT files from https://mailgun.com/app/domains/fulltestsuite.herokuapp.com/verify
+
 
 7. take what you can from reserve_yacht on heroku
   a. look at commit history
