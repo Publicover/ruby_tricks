@@ -134,7 +134,7 @@ XXXXX 5. import csv
     # <h1>Reports#send_email</h1>
     # <p>Find me in app/views/reports/send_email.html.erb</p>
     # <br><h1><p>You sent an email to <%= params[:address] %>. </p></h1>
-    
+
   in config/$RAILS_ENV.rb, change config.action_mailer.raise_delivery_errors to true
   paste the following under that
     # config.action_mailer.delivery_method = :smtp
@@ -165,9 +165,28 @@ XXXXX 5. import csv
     add the TXT files from https://mailgun.com/app/domains/fulltestsuite.herokuapp.com/verify
 
 
-7. take what you can from reserve_yacht on heroku
+XXXXX 7. take what you can from reserve_yacht on heroku
   a. look at commit history
+    DONE
 
-8. add secret info to ~/.bash_profile
+XXXXX 8. add secret info to ~/.bash_profile
+  in Terminal, use
+    atom .bash_profile
 
 9. implement css grid
+
+10. sortable columns
+
+11. click to open in new tab
+
+12. "Make the whole thing, like, blue, but not, like, wicked blue."
+
+13. make it responsive and mobile-first
+
+14. embed something from the Google API
+
+15. ajax implementation
+
+16. do really anything with javascript
+
+17. 
