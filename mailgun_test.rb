@@ -41,6 +41,7 @@ XXXXX 2. put up on heroku
     3. create Procfile
        web: bundle exec puma -C config/puma.rb
   D. RUN COMMANDS
+    heroku create appnamenospaces
     bundle install
     git add .
     git commit -m "message and shit"
@@ -164,6 +165,10 @@ XXXXX 5. import csv
     integrate PointDNS
     add the TXT files from https://mailgun.com/app/domains/fulltestsuite.herokuapp.com/verify
 
+    add attachments:
+      in mailer, add before mail to:
+        # attachments['publicover_resume.pdf'] = File.read('public/JimPublicoverDevNC2016.pdf')
+
 
 XXXXX 7. take what you can from reserve_yacht on heroku
   a. look at commit history
@@ -179,14 +184,12 @@ XXXXX 8. add secret info to ~/.bash_profile
 
 11. click to open in new tab
 
-12. "Make the whole thing, like, blue, but not, like, wicked blue."
+XXXXX 12. make it responsive and mobile-first
+  A. in app/view/layouts/application, put the following:
+    # <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-13. make it responsive and mobile-first
+13. embed something from the Google API
 
-14. embed something from the Google API
+14. ajax implementation
 
-15. ajax implementation
-
-16. do really anything with javascript
-
-17. 
+15. do really anything with javascript
